@@ -2,9 +2,14 @@ import { ScoreboardClient } from "@/components/scoreboard/ScoreboardClient";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StickerLabel } from "@/components/ui/StickerLabel";
 
-export const metadata = {
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata = createPageMetadata({
   title: "Smoke Scoreboard",
-};
+  description:
+    "Michigan's Smoke Scoreboard — rank flower, concentrates, edibles, and vapes by Dan Score, category, and verdict.",
+  path: "/scoreboard",
+});
 
 export default function ScoreboardPage() {
   return (

@@ -9,7 +9,10 @@ export function HeroSection() {
   const topThree = getTopReviews(3);
 
   return (
-    <section className="relative overflow-hidden border-b-4 border-ink bg-gradient-to-br from-slime/40 via-background to-electric/30 px-4 py-12 md:py-16">
+    <section
+      className="relative overflow-hidden border-b-4 border-ink bg-gradient-to-br from-slime/40 via-background to-electric/30 px-4 py-12 md:py-16"
+      aria-labelledby="hero-heading"
+    >
       <div className="absolute right-4 top-8 h-24 w-32 slime-blob opacity-70 md:h-40 md:w-48" />
       <div className="absolute bottom-8 left-4 h-16 w-16 rotate-12 border-4 border-ink bg-nick-orange opacity-80" />
       <div className="absolute right-1/4 top-1/2 hidden h-8 w-8 rounded-full bg-grape md:block" />
@@ -19,7 +22,10 @@ export function HeroSection() {
           <StickerLabel color="orange" className="mb-4">
             Mid or Gas?
           </StickerLabel>
-          <h1 className="font-display text-4xl font-black uppercase leading-[0.95] text-ink md:text-6xl lg:text-7xl">
+          <h1
+            id="hero-heading"
+            className="font-display text-4xl font-black uppercase leading-[0.95] text-ink md:text-6xl lg:text-7xl"
+          >
             {SITE_TAGLINE}
           </h1>
           <p className="mt-4 text-xl font-semibold text-ink/80 md:text-2xl">

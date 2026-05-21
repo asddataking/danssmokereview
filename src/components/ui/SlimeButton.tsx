@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ExternalLinkLabel } from "@/components/ui/ExternalLinkLabel";
 import { cn } from "@/lib/utils";
 
 type Variant = "primary" | "secondary" | "electric" | "ghost";
@@ -44,6 +45,7 @@ export function SlimeButton({
         rel={external ? "noopener noreferrer" : undefined}
       >
         {children}
+        {external && <ExternalLinkLabel />}
       </Link>
     );
   }

@@ -5,13 +5,18 @@ import { StickerLabel } from "@/components/ui/StickerLabel";
 import {
   DANK_N_DEVOUR_URL,
   KICK_URL,
+  PARTNER_LOGOS,
   SITE_NAME,
   SPLIFFT_URL,
 } from "@/lib/constants";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = createPageMetadata({
   title: "About & Ecosystem",
-};
+  description:
+    "Meet Dan's Smoke Reviews and The Dank Network — Michigan cannabis reviews, DankNDevour munchie culture, Splifft community, and Live at 4:20 on Kick.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (
@@ -57,6 +62,7 @@ export default function AboutPage() {
             href={DANK_N_DEVOUR_URL}
             cta="DankNDevour.com"
             accent="orange"
+            logo={PARTNER_LOGOS.dankNDevour}
           />
           <EcosystemCard
             title="Splifft"
@@ -65,6 +71,7 @@ export default function AboutPage() {
             href={SPLIFFT_URL}
             cta="getsplifft.com"
             accent="grape"
+            logo={PARTNER_LOGOS.splifft}
           />
           <div className="flex h-full flex-col border-4 border-ink bg-ink p-6 text-white shadow-sticker">
             <StickerLabel color="electric">Network</StickerLabel>
@@ -77,11 +84,12 @@ export default function AboutPage() {
             </p>
             <a
               href={KICK_URL}
-              className="mt-4 font-bold uppercase text-slime hover:underline"
+              className="mt-4 font-bold uppercase text-slime hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slime"
               target="_blank"
               rel="noopener noreferrer"
             >
               kick.com/danssmokereview →
+              <span className="sr-only"> (opens in a new tab)</span>
             </a>
           </div>
         </div>

@@ -2,10 +2,23 @@ export const SITE_NAME = "Dan's Smoke Reviews";
 export const SITE_TAGLINE = "Michigan's Smoke Scoreboard";
 export const SITE_DESCRIPTION =
   "Real reviews. Real smoke. Real Michigan. Cannabis product reviews, scoreboard rankings, audio sessions, and culture.";
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://danssmokereview.vercel.app";
 
 export const KICK_URL = "https://kick.com/danssmokereview";
 export const DANK_N_DEVOUR_URL = "https://dankndevour.com";
 export const SPLIFFT_URL = "https://www.getsplifft.com";
+
+export const PARTNER_LOGOS = {
+  dankNDevour: {
+    src: "/images/partners/dankndevour-logo.png",
+    alt: "DankNDevour logo",
+  },
+  splifft: {
+    src: "/images/partners/splifft-logo.png",
+    alt: "Splifft logo",
+  },
+} as const;
 
 export const NAV_LINKS = [
   { label: "Scoreboard", href: "/scoreboard", external: false },

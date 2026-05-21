@@ -1,11 +1,15 @@
 import { EcosystemCard } from "@/components/ui/EcosystemCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { SPLIFFT_URL } from "@/lib/constants";
+import { PARTNER_LOGOS, SPLIFFT_URL } from "@/lib/constants";
 
 export function SplifftCommunitySection() {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-12">
+    <section
+      className="mx-auto max-w-6xl px-4 py-12"
+      aria-labelledby="splifft-community-heading"
+    >
       <SectionHeading
+        id="splifft-community-heading"
         title="Join the Smoke Community"
         subtitle="Community ratings, product tracking, badges — powered by Splifft."
         accent="electric"
@@ -17,6 +21,7 @@ export function SplifftCommunitySection() {
         href={SPLIFFT_URL}
         cta="Join on Splifft"
         accent="grape"
+        logo={PARTNER_LOGOS.splifft}
       />
     </section>
   );

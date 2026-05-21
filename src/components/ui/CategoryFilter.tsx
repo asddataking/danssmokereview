@@ -28,6 +28,7 @@ export function CategoryFilter({
           key={cat}
           type="button"
           onClick={() => onChange(cat)}
+          aria-pressed={selected === cat}
           className={cn(
             "border-3 border-ink px-3 py-1.5 text-xs font-bold uppercase transition-all hover-wiggle focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric",
             selected === cat

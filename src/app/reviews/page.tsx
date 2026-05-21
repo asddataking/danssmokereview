@@ -2,9 +2,14 @@ import { ReviewsGridClient } from "@/components/reviews/ReviewsGridClient";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StickerLabel } from "@/components/ui/StickerLabel";
 
-export const metadata = {
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata = createPageMetadata({
   title: "Reviews",
-};
+  description:
+    "Browse Michigan cannabis product reviews — flower, rosin, edibles, vapes, and more with Dan Scores and verdict stamps.",
+  path: "/reviews",
+});
 
 export default function ReviewsPage() {
   return (

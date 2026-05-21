@@ -11,7 +11,8 @@ import {
   getReviewBySlug,
 } from "@/lib/data/reviews";
 import { formatScore } from "@/lib/types";
-import { KICK_URL } from "@/lib/constants";
+import { KICK_URL, SITE_URL } from "@/lib/constants";
+import { createPageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 
 interface PageProps {
@@ -25,11 +26,21 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const review = getReviewBySlug(slug);
-  if (!review) return { title: "Review Not Found" };
-  return {
+  if (!review) {
+    return createPageMetadata({
+      title: "Review Not Found",
+      path: `/reviews/${slug}`,
+      noIndex: true,
+    });
+  }
+  return createPageMetadata({
     title: `${review.productName} — ${review.brand}`,
-    description: review.shortQuote,
-  };
+    description: `${review.shortQuote} Dan Score: ${review.danScore}/10. Verdict: ${review.verdict}.`,
+    path: `/reviews/${review.slug}`,
+    image: review.imageUrl.startsWith("http")
+      ? review.imageUrl
+      : `${SITE_URL}${review.imageUrl}`,
+  });
 }
 
 export default async function ReviewDetailPage({ params }: PageProps) {

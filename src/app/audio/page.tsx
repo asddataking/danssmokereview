@@ -3,9 +3,14 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StickerLabel } from "@/components/ui/StickerLabel";
 import { getAllAudioSessions } from "@/lib/data/audio";
 
-export const metadata = {
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata = createPageMetadata({
   title: "Audio Sessions",
-};
+  description:
+    "Listen to Dan's Smoke Review audio sessions — products, culture, scoreboard talk, and Michigan cannabis stories.",
+  path: "/audio",
+});
 
 export default function AudioPage() {
   const sessions = getAllAudioSessions();
