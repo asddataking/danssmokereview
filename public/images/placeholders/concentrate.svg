@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#f5f0e8"/>
+  <rect x="20" y="20" width="360" height="260" fill="none" stroke="#0A0A0A" stroke-width="8"/>
+  <text x="200" y="160" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="22" fill="#0A0A0A">CONCENTRATE</text>
+</svg>
