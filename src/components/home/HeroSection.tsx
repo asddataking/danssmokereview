@@ -1,12 +1,12 @@
+import { ScoreboardList } from "@/components/scoreboard/ScoreboardList";
 import Link from "next/link";
-import { ScoreboardCard } from "@/components/ui/ScoreboardCard";
 import { SlimeButton } from "@/components/ui/SlimeButton";
 import { StickerLabel } from "@/components/ui/StickerLabel";
 import { getTopReviews } from "@/lib/data/reviews";
 import { KICK_URL, SITE_TAGLINE } from "@/lib/constants";
 
-export function HeroSection() {
-  const topThree = getTopReviews(3);
+export async function HeroSection() {
+  const topThree = await getTopReviews(3);
 
   return (
     <section
@@ -48,14 +48,7 @@ export function HeroSection() {
           <p className="font-display text-sm font-black uppercase text-ink">
             Top of the board
           </p>
-          {topThree.map((review, i) => (
-            <ScoreboardCard
-              key={review.id}
-              review={review}
-              rank={i + 1}
-              compact
-            />
-          ))}
+          <ScoreboardList reviews={topThree} compact animated={false} />
         </div>
       </div>
     </section>

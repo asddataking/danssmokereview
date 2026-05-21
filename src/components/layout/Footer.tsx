@@ -37,7 +37,7 @@ export function Footer() {
   return (
     <footer className="mt-auto border-t-4 border-ink bg-ink text-white">
       <div className="mx-auto max-w-6xl px-4 py-10">
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <p className="font-display text-2xl font-black uppercase text-slime">
               {SITE_NAME}
@@ -46,6 +46,13 @@ export function Footer() {
               Michigan&apos;s Smoke Scoreboard. Real reviews. Real smoke. Real
               Michigan.
             </p>
+            <Link
+              href="/media"
+              className="mt-4 inline-flex items-center gap-2 border-3 border-slime bg-slime/10 px-3 py-2 text-xs font-bold uppercase text-slime hover:bg-slime hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slime"
+            >
+              <span aria-hidden="true">📦</span>
+              Media Pack
+            </Link>
           </div>
           <nav aria-label="Ecosystem links">
             <p className="mb-3 text-xs font-bold uppercase tracking-wider text-slime">

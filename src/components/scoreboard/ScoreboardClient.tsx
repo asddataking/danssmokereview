@@ -1,23 +1,29 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ScoreboardList } from "@/components/scoreboard/ScoreboardList";
 import { CategoryFilter } from "@/components/ui/CategoryFilter";
-import { ScoreboardCard } from "@/components/ui/ScoreboardCard";
 import { SortFilter } from "@/components/ui/SortFilter";
-import { getScoreboardReviews } from "@/lib/data/reviews";
-import type { ProductCategory, ScoreboardSort } from "@/lib/types";
+import { filterReviews, sortReviews } from "@/lib/data/review-filters";
+import type { ProductCategory, ProductReview, ScoreboardSort } from "@/lib/types";
 
-export function ScoreboardClient() {
+interface ScoreboardClientProps {
+  reviews: ProductReview[];
+}
+
+export function ScoreboardClient({ reviews }: ScoreboardClientProps) {
   const [category, setCategory] = useState<ProductCategory | "All">("All");
   const [sort, setSort] = useState<ScoreboardSort>("danScore");
 
-  const reviews = useMemo(
+  const filtered = useMemo(
     () =>
-      getScoreboardReviews(
-        { category: category === "All" ? undefined : category },
+      sortReviews(
+        filterReviews(reviews, {
+          category: category === "All" ? undefined : category,
+        }),
         sort,
       ),
-    [category, sort],
+    [reviews, category, sort],
   );
 
   return (
@@ -26,16 +32,12 @@ export function ScoreboardClient() {
         <CategoryFilter selected={category} onChange={setCategory} />
         <SortFilter selected={sort} onChange={setSort} />
       </div>
-      {reviews.length === 0 ? (
+      {filtered.length === 0 ? (
         <p className="border-4 border-dashed border-ink/30 p-8 text-center font-bold text-ink/60">
           No products match this filter. Try another category.
         </p>
       ) : (
-        <div className="space-y-3">
-          {reviews.map((review, i) => (
-            <ScoreboardCard key={review.id} review={review} rank={i + 1} />
-          ))}
-        </div>
+        <ScoreboardList key={`${category}-${sort}`} reviews={filtered} animated />
       )}
     </div>
   );

@@ -1,4 +1,5 @@
 import type { AudioSession, ProductReview } from "@/lib/types";
+import { KICK_URL } from "@/lib/constants";
 
 export const productReviews: ProductReview[] = [
   {
@@ -21,7 +22,7 @@ On the first few pulls you get sweet orange peel, then the exhale opens into fue
 
 At $28 for a infused pre-roll it's not cheap, but compared to mid shelf options at most dispos, this is Worth It if you want a showpiece smoke for the scoreboard.`,
     whereToBuyUrl: "https://jeeter.com",
-    audioUrl: "/audio/placeholder.mp3",
+    listenUrl: KICK_URL,
     createdAt: "2026-05-01T12:00:00Z",
   },
   {
@@ -89,7 +90,7 @@ Low-temp dabs reward you with full flavor and a creeping heavy high. This is not
 
 $55 a gram is premium Michigan pricing, but for solventless GMO lovers this is Worth It. One of the loudest rosins on the board right now.`,
     whereToBuyUrl: "https://elementextracts.com",
-    audioUrl: "/audio/placeholder.mp3",
+    listenUrl: KICK_URL,
     createdAt: "2026-04-15T14:00:00Z",
   },
   {
@@ -213,7 +214,7 @@ export const audioSessions: AudioSession[] = [
     duration: "18:42",
     topic: "Element Live Rosin GMO",
     relatedReviewId: "4",
-    audioUrl: "/audio/placeholder.mp3",
+    listenUrl: KICK_URL,
     description:
       "Dan breaks down cold cure, dab temps, and why GMO belongs at the top of the Michigan board.",
   },
@@ -225,7 +226,7 @@ export const audioSessions: AudioSession[] = [
     duration: "12:05",
     topic: "Jeeter Juice Detroiter Pre-Roll",
     relatedReviewId: "1",
-    audioUrl: "/audio/placeholder.mp3",
+    listenUrl: KICK_URL,
     description:
       "Pre-roll review session — infused vs classic, and whether Jeeter is Worth the Tax in 2026.",
   },
@@ -237,7 +238,7 @@ export const audioSessions: AudioSession[] = [
     duration: "22:30",
     topic: "Edibles & DankNDevour pairings",
     relatedReviewId: "3",
-    audioUrl: "/audio/placeholder.mp3",
+    listenUrl: KICK_URL,
     description:
       "Pairing Wyld Marionberry with Detroit late-night food spots — DankNDevour crossover episode.",
   },
@@ -248,7 +249,7 @@ export const audioSessions: AudioSession[] = [
     date: "2026-05-01",
     duration: "15:18",
     topic: "Michigan Smoke Scoreboard",
-    audioUrl: "/audio/placeholder.mp3",
+    listenUrl: KICK_URL,
     description:
       "Monthly scoreboard rundown — who moved up, who got taxed, and what to grab this week.",
   },
@@ -259,7 +260,7 @@ export const audioSessions: AudioSession[] = [
     date: "2026-04-10",
     duration: "9:55",
     topic: "Community ratings & badges",
-    audioUrl: "/audio/placeholder.mp3",
+    listenUrl: KICK_URL,
     description:
       "Early look at Splifft integration — community scores, tracking, and future social features.",
   },
@@ -271,7 +272,7 @@ export const audioSessions: AudioSession[] = [
     duration: "14:20",
     topic: "RISE Gary Payton",
     relatedReviewId: "2",
-    audioUrl: "/audio/placeholder.mp3",
+    listenUrl: KICK_URL,
     description:
       "Live session notes on GP flower — jar appeal, grind, and where it lands on the board.",
   },

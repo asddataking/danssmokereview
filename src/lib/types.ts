@@ -32,8 +32,10 @@ export interface ProductReview {
   shortQuote: string;
   fullReview: string;
   whereToBuyUrl: string;
-  audioUrl?: string;
+  /** External link to a review episode (Kick, YouTube, etc.) — not hosted on this site */
+  listenUrl?: string;
   videoUrl?: string;
+  movement?: Movement;
   createdAt: string;
 }
 
@@ -45,7 +47,9 @@ export interface AudioSession {
   duration: string;
   topic: string;
   relatedReviewId?: string;
-  audioUrl?: string;
+  relatedReviewSlug?: string;
+  /** External link (Kick, Spotify, YouTube, etc.) — not hosted on this site */
+  listenUrl?: string;
   description: string;
 }
 

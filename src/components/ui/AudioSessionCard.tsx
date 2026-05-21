@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { ExternalLinkLabel } from "@/components/ui/ExternalLinkLabel";
+import { SlimeButton } from "@/components/ui/SlimeButton";
 import type { AudioSession } from "@/lib/types";
-import { getReviewById } from "@/lib/data/reviews";
 import { cn } from "@/lib/utils";
 
 interface AudioSessionCardProps {
@@ -8,11 +9,10 @@ interface AudioSessionCardProps {
   expanded?: boolean;
 }
 
-export function AudioSessionCard({ session, expanded = false }: AudioSessionCardProps) {
-  const related = session.relatedReviewId
-    ? getReviewById(session.relatedReviewId)
-    : undefined;
-
+export function AudioSessionCard({
+  session,
+  expanded = false,
+}: AudioSessionCardProps) {
   return (
     <article
       className={cn(
@@ -21,13 +21,25 @@ export function AudioSessionCard({ session, expanded = false }: AudioSessionCard
       )}
     >
       <div className="flex gap-4">
-        <button
-          type="button"
-          aria-label={`Play ${session.title}`}
-          className="flex h-14 w-14 shrink-0 items-center justify-center border-4 border-ink bg-grape text-2xl text-white shadow-sticker transition-transform hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
-        >
-          ▶
-        </button>
+        {session.listenUrl ? (
+          <a
+            href={session.listenUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-14 w-14 shrink-0 items-center justify-center border-4 border-ink bg-grape text-xs font-black uppercase leading-tight text-white shadow-sticker transition-transform hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
+            aria-label={`Listen to ${session.title} (opens in a new tab)`}
+          >
+            Listen
+          </a>
+        ) : (
+          <span
+            className="flex h-14 w-14 shrink-0 items-center justify-center border-4 border-dashed border-ink/30 bg-zinc-100 text-[10px] font-bold uppercase text-ink/40"
+            aria-hidden
+          >
+            Soon
+          </span>
+        )}
+
         <div className="min-w-0 flex-1">
           <time className="text-xs font-bold uppercase text-ink/50">
             {new Date(session.date).toLocaleDateString("en-US", {
@@ -44,24 +56,23 @@ export function AudioSessionCard({ session, expanded = false }: AudioSessionCard
           {expanded && (
             <p className="mt-2 text-sm text-ink/80">{session.description}</p>
           )}
-          {related && (
+          {session.relatedReviewSlug && (
             <Link
-              href={`/reviews/${related.slug}`}
-              className="mt-2 inline-block text-sm font-bold text-electric underline hover:text-ink"
+              href={`/reviews/${session.relatedReviewSlug}`}
+              className="mt-2 inline-block text-sm font-bold text-electric underline hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
             >
-              Related review: {related.productName} →
+              Related review →
             </Link>
           )}
         </div>
       </div>
-      {expanded && (
-        <div className="mt-4 flex h-12 items-center gap-2 rounded-none border-3 border-dashed border-ink/30 bg-zinc-100 px-4">
-          <span className="text-xs font-bold uppercase text-ink/50">
-            Audio player placeholder
-          </span>
-          <div className="h-1 flex-1 bg-ink/20">
-            <div className="h-full w-1/3 bg-slime" />
-          </div>
+
+      {expanded && session.listenUrl && (
+        <div className="mt-4">
+          <SlimeButton href={session.listenUrl} variant="electric" external>
+            Listen on external platform
+            <ExternalLinkLabel />
+          </SlimeButton>
         </div>
       )}
     </article>

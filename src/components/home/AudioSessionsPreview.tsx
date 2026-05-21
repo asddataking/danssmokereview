@@ -3,14 +3,14 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SlimeButton } from "@/components/ui/SlimeButton";
 import { getLatestAudioSessions } from "@/lib/data/audio";
 
-export function AudioSessionsPreview() {
-  const sessions = getLatestAudioSessions(3);
+export async function AudioSessionsPreview() {
+  const sessions = await getLatestAudioSessions(3);
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-12">
       <SectionHeading
         title="Audio Sessions"
-        subtitle="Dan's Smoke Review on the mic — products, culture, scoreboard."
+        subtitle="Episodes on Kick and other platforms — tap Listen to open."
         accent="grape"
       />
       <div className="grid gap-4 md:grid-cols-3">

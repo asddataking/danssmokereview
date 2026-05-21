@@ -1,7 +1,7 @@
 import { ScoreboardClient } from "@/components/scoreboard/ScoreboardClient";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StickerLabel } from "@/components/ui/StickerLabel";
-
+import { getScoreboardReviews } from "@/lib/data/reviews";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
@@ -11,17 +11,19 @@ export const metadata = createPageMetadata({
   path: "/scoreboard",
 });
 
-export default function ScoreboardPage() {
+export default async function ScoreboardPage() {
+  const reviews = await getScoreboardReviews();
+
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10">
+    <div className="mx-auto max-w-6xl px-4 py-10 scoreboard-page">
       <StickerLabel color="slime" className="mb-4">
         Michigan Rankings
       </StickerLabel>
       <SectionHeading
         title="Smoke Scoreboard"
-        subtitle="Filter by category, sort by Dan Score, community placeholder, newest, or worth the tax."
+        subtitle="Filter by category, sort by Dan Score, community score, newest, or worth the tax."
       />
-      <ScoreboardClient />
+      <ScoreboardClient reviews={reviews} />
     </div>
   );
 }

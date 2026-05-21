@@ -1,0 +1,8 @@
+import "server-only";
+
+import { createClient } from "@/utils/supabase/server";
+import { cookies } from "next/headers";
+
+export async function getSupabaseServer() {
+  return createClient(await cookies());
+}

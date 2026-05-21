@@ -3,8 +3,8 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SlimeButton } from "@/components/ui/SlimeButton";
 import { getLatestReviews } from "@/lib/data/reviews";
 
-export function LatestReviews() {
-  const reviews = getLatestReviews(4);
+export async function LatestReviews() {
+  const reviews = await getLatestReviews(4);
 
   return (
     <section className="border-y-4 border-ink bg-white/50 py-12">

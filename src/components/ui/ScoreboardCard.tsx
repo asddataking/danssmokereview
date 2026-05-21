@@ -10,26 +10,28 @@ interface ScoreboardCardProps {
   review: ProductReview;
   rank: number;
   compact?: boolean;
+  onSelect?: (review: ProductReview) => void;
 }
+
+const cardStyles = (compact: boolean) =>
+  cn(
+    "group flex w-full gap-4 border-4 border-ink bg-white p-4 text-left shadow-sticker transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-sticker-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric",
+    compact && "p-3",
+  );
 
 export function ScoreboardCard({
   review,
   rank,
   compact = false,
+  onSelect,
 }: ScoreboardCardProps) {
-  const movement = getMovement(review.slug);
+  const movement = review.movement ?? getMovement(review.slug);
 
-  return (
-    <Link
-      href={`/reviews/${review.slug}`}
-      className={cn(
-        "group flex gap-4 border-4 border-ink bg-white p-4 shadow-sticker transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-sticker-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric",
-        compact && "p-3",
-      )}
-    >
+  const content = (
+    <>
       <div
         className={cn(
-          "flex shrink-0 flex-col items-center justify-center border-4 border-ink bg-slime font-display font-black text-ink",
+          "flex shrink-0 flex-col items-center justify-center border-4 border-ink bg-slime font-display font-black text-ink scoreboard-rank-badge",
           compact ? "h-12 w-12 text-xl" : "h-14 w-14 text-2xl",
         )}
       >
@@ -39,9 +41,9 @@ export function ScoreboardCard({
       <div className="relative h-16 w-16 shrink-0 overflow-hidden border-3 border-ink bg-zinc-200">
         <Image
           src={review.imageUrl}
-          alt={review.productName}
+          alt=""
           fill
-          className="object-cover"
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
           sizes="64px"
         />
       </div>
@@ -79,7 +81,34 @@ export function ScoreboardCard({
           )}
           <VerdictBadge verdict={review.verdict} size="sm" />
         </div>
+        {onSelect && (
+          <p className="mt-2 text-xs font-bold uppercase text-electric opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+            Tap for Dan&apos;s take →
+          </p>
+        )}
       </div>
+    </>
+  );
+
+  if (onSelect) {
+    return (
+      <button
+        type="button"
+        onClick={() => onSelect(review)}
+        className={cardStyles(compact)}
+        aria-label={`${review.productName} by ${review.brand}, rank ${rank}, Dan score ${formatScore(review.danScore)}. View details.`}
+      >
+        {content}
+      </button>
+    );
+  }
+
+  return (
+    <Link
+      href={`/reviews/${review.slug}`}
+      className={cardStyles(compact)}
+    >
+      {content}
     </Link>
   );
 }

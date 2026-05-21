@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
@@ -30,7 +28,7 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env
 .env*
 !.env.local.example
 
@@ -41,4 +39,16 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.vercel
+# IDE / agent
+.codex/
+.cursor/
+.gemini/
+.vscode/
+.zed/
+config/
+
+# generated db artifacts (keep migrations + scripts)
+scripts/generated-seed.sql
+scripts/seed-reviews-only.sql
+scripts/seed-audio-only.sql
+.cursor-seed-payload.json

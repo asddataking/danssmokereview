@@ -1,7 +1,7 @@
 import { ReviewsGridClient } from "@/components/reviews/ReviewsGridClient";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StickerLabel } from "@/components/ui/StickerLabel";
-
+import { getAllReviews } from "@/lib/data/reviews";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
@@ -11,7 +11,9 @@ export const metadata = createPageMetadata({
   path: "/reviews",
 });
 
-export default function ReviewsPage() {
+export default async function ReviewsPage() {
+  const reviews = await getAllReviews();
+
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
       <StickerLabel color="electric" className="mb-4">
@@ -21,7 +23,7 @@ export default function ReviewsPage() {
         title="Reviews"
         subtitle="Every product scored, quoted, and verdict-stamped for Michigan."
       />
-      <ReviewsGridClient />
+      <ReviewsGridClient reviews={reviews} />
     </div>
   );
 }

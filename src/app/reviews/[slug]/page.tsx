@@ -5,8 +5,8 @@ import { ProductReviewCard } from "@/components/ui/ProductReviewCard";
 import { SlimeButton } from "@/components/ui/SlimeButton";
 import { StickerLabel } from "@/components/ui/StickerLabel";
 import { VerdictBadge } from "@/components/ui/VerdictBadge";
-import { productReviews } from "@/data/seed";
 import {
+  getAllReviewSlugs,
   getRelatedReviews,
   getReviewBySlug,
 } from "@/lib/data/reviews";
@@ -20,12 +20,13 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return productReviews.map((r) => ({ slug: r.slug }));
+  const slugs = await getAllReviewSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const review = getReviewBySlug(slug);
+  const review = await getReviewBySlug(slug);
   if (!review) {
     return createPageMetadata({
       title: "Review Not Found",
@@ -45,10 +46,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ReviewDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const review = getReviewBySlug(slug);
+  const review = await getReviewBySlug(slug);
   if (!review) notFound();
 
-  const related = getRelatedReviews(review.id);
+  const related = await getRelatedReviews(review.id);
 
   return (
     <article className="mx-auto max-w-6xl px-4 py-10">
@@ -144,11 +145,20 @@ export default async function ReviewDetailPage({ params }: PageProps) {
       </div>
 
       <div className="mt-8 grid gap-6 md:grid-cols-2">
-        <div className="flex min-h-[140px] flex-col items-center justify-center border-4 border-dashed border-ink bg-zinc-100 p-6">
+        <div className="flex min-h-[140px] flex-col items-center justify-center border-4 border-ink bg-white p-6 shadow-sticker">
           <span className="text-4xl">🎧</span>
-          <p className="mt-2 font-bold uppercase text-ink/60">Audio session placeholder</p>
-          {review.audioUrl && (
-            <p className="text-xs text-ink/40">{review.audioUrl}</p>
+          <p className="mt-2 font-bold uppercase text-ink/60">Audio episode</p>
+          {review.listenUrl ? (
+            <SlimeButton
+              href={review.listenUrl}
+              variant="electric"
+              external
+              className="mt-4"
+            >
+              Listen externally
+            </SlimeButton>
+          ) : (
+            <p className="mt-2 text-sm text-ink/50">Link coming soon</p>
           )}
         </div>
         <div className="flex min-h-[140px] flex-col items-center justify-center border-4 border-dashed border-ink bg-zinc-100 p-6">
