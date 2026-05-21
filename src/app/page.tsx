@@ -1,6 +1,7 @@
 import { AudioSessionsPreview } from "@/components/home/AudioSessionsPreview";
 import { HeroSection } from "@/components/home/HeroSection";
 import { LatestReviews } from "@/components/home/LatestReviews";
+import { MidnightSmokingAffiliate } from "@/components/home/MidnightSmokingAffiliate";
 import { LiveAt420Banner } from "@/components/ui/LiveAt420Banner";
 import { PartnerSection } from "@/components/home/PartnerSection";
 import { ScoreboardPreview } from "@/components/home/ScoreboardPreview";
@@ -25,6 +26,7 @@ export default function HomePage() {
       </section>
       <ScoreboardPreview />
       <LatestReviews />
+      <MidnightSmokingAffiliate />
       <AudioSessionsPreview />
       <PartnerSection
         id="munchie-mode-heading"

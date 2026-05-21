@@ -8,6 +8,7 @@ export const SITE_URL =
 export const KICK_URL = "https://kick.com/danssmokereview";
 export const DANK_N_DEVOUR_URL = "https://dankndevour.com";
 export const SPLIFFT_URL = "https://www.getsplifft.com";
+export const MIDNIGHT_SMOKING_URL = "https://www.midnightsmoking.com/";
 
 export const PARTNER_LOGOS = {
   dankNDevour: {
