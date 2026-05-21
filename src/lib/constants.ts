@@ -44,8 +44,8 @@ export const BRAND_COLORS = [
 export const MEDIA_ASSETS = [
   {
     label: "Open Graph / social card",
-    href: "/images/og-default.svg",
-    type: "SVG",
+    href: "/images/og-default.jpg",
+    type: "JPG",
   },
   {
     label: "DankNDevour partner logo",

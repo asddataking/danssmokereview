@@ -6,7 +6,15 @@ import {
   SITE_URL,
 } from "@/lib/constants";
 
-const defaultOgImage = `${SITE_URL}/images/og-default.svg`;
+const defaultOgImage = "/images/og-default.jpg";
+
+const defaultOgImageMeta = {
+  url: defaultOgImage,
+  width: 1024,
+  height: 682,
+  alt: `${SITE_NAME} — Real reviews. Real smoke. Real Michigan.`,
+  type: "image/jpeg" as const,
+};
 
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -38,20 +46,13 @@ export const defaultMetadata: Metadata = {
     siteName: SITE_NAME,
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    images: [
-      {
-        url: defaultOgImage,
-        width: 1200,
-        height: 630,
-        alt: `${SITE_NAME} — ${SITE_TAGLINE}`,
-      },
-    ],
+    images: [defaultOgImageMeta],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    images: [defaultOgImage],
+    images: [defaultOgImageMeta],
   },
   robots: {
     index: true,
@@ -84,7 +85,7 @@ export function createPageMetadata({
   noIndex = false,
 }: PageMetadataOptions): Metadata {
   const url = `${SITE_URL}${path}`;
-  const ogImage = image ?? defaultOgImage;
+  const ogImage = image ?? defaultOgImageMeta;
 
   return {
     title,
@@ -94,12 +95,14 @@ export function createPageMetadata({
       title: `${title} | ${SITE_NAME}`,
       description,
       url,
-      images: [{ url: ogImage, alt: title }],
+      images: [typeof ogImage === "string" ? { url: ogImage, alt: title } : ogImage],
     },
     twitter: {
       title: `${title} | ${SITE_NAME}`,
       description,
-      images: [ogImage],
+      images: [
+        typeof ogImage === "string" ? ogImage : ogImage.url,
+      ],
     },
     ...(noIndex && { robots: { index: false, follow: false } }),
   };
