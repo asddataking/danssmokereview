@@ -18,21 +18,22 @@ Open [http://localhost:3000](http://localhost:3000).
 |----------|---------|
 | `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Supabase anon/publishable key |
-| `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Clerk publishable key |
-| `CLERK_SECRET_KEY` | Clerk secret key |
-| `CLERK_ADMIN_USER_IDS` | Optional comma-separated Clerk user IDs for the scoreboard editor |
+| `SUPABASE_ADMIN_USER_IDS` | Optional comma-separated auth user UUIDs for the scoreboard editor |
 
-## Clerk + Supabase (scoreboard editor)
+## Supabase auth (scoreboard editor)
 
-1. Create a [Clerk](https://clerk.com) application and add keys to `.env.local`.
-2. In Clerk Dashboard → **Integrations → Supabase**, activate the native integration and copy your Clerk domain.
-3. In Supabase Dashboard → **Authentication → Sign In / Providers**, add **Clerk** and paste the domain.
-4. Run migrations in `supabase/migrations/` (includes `scoreboard_admins` RLS for edits).
-5. After you sign in once, copy your Clerk user ID from the dashboard and run in Supabase SQL:
+1. In [Supabase Dashboard](https://supabase.com/dashboard) → **Authentication → Providers**, enable **Email** (password sign-in).
+2. Set **Site URL** to your app URL (e.g. `http://localhost:3000` or your Vercel URL).
+3. Add redirect URL: `http://localhost:3000/auth/callback` (and production URL + `/auth/callback`).
+4. Run migrations in `supabase/migrations/`.
+5. Sign up at `/sign-up`, then in Supabase SQL add your user as an admin:
 
 ```sql
-INSERT INTO scoreboard_admins (clerk_user_id) VALUES ('user_xxxxxxxx');
+INSERT INTO scoreboard_admins (user_id)
+VALUES ('your-auth-user-uuid-from-dashboard');
 ```
+
+Find your UUID under **Authentication → Users**.
 
 6. Visit [/admin/scoreboard](http://localhost:3000/admin/scoreboard) while signed in to edit scores.
 
@@ -41,7 +42,7 @@ INSERT INTO scoreboard_admins (clerk_user_id) VALUES ('user_xxxxxxxx');
 | What | Where |
 |------|--------|
 | Seed fallback data | [`src/data/seed.ts`](src/data/seed.ts) |
-| Live scoreboard (when signed in) | `/admin/scoreboard` |
+| Live scoreboard (signed in) | `/admin/scoreboard` |
 | Brand colors & theme | [`src/app/globals.css`](src/app/globals.css) |
 | Nav & URLs | [`src/lib/constants.ts`](src/lib/constants.ts) |
 
@@ -49,12 +50,11 @@ INSERT INTO scoreboard_admins (clerk_user_id) VALUES ('user_xxxxxxxx');
 
 ```bash
 npm run build
-npm run db:seed      # seed Supabase from seed.ts (service role)
+npm run db:seed
 ```
 
 ## Stack
 
 - Next.js App Router
-- Clerk (auth)
-- Supabase (database + RLS)
+- Supabase (database + auth + RLS)
 - TypeScript, Tailwind CSS v4

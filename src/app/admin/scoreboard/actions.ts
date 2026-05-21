@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { requireScoreboardAdmin } from "@/lib/auth";
 import type { Movement, Verdict } from "@/lib/types";
-import { getSupabaseWithClerk } from "@/utils/supabase/clerk";
+import { getSupabaseServer } from "@/utils/supabase/server";
 
 export type ReviewEditorInput = {
   id: string;
@@ -19,7 +19,7 @@ export async function updateReviewScores(
 ): Promise<{ ok: true } | { ok: false; error: string }> {
   try {
     await requireScoreboardAdmin();
-    const supabase = await getSupabaseWithClerk();
+    const supabase = await getSupabaseServer();
 
     const { error } = await supabase
       .from("reviews")
@@ -38,7 +38,7 @@ export async function updateReviewScores(
         ok: false,
         error:
           error.message.includes("policy")
-            ? "Database blocked the update. Add your Clerk user ID to scoreboard_admins in Supabase and enable the Clerk integration."
+            ? "Database blocked the update. Add your Supabase user ID to scoreboard_admins (see README)."
             : error.message,
       };
     }

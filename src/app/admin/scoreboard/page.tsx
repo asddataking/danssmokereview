@@ -1,6 +1,6 @@
-import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { ScoreboardEditor } from "@/app/admin/scoreboard/ScoreboardEditor";
+import { SignOutButton } from "@/components/auth/SignOutButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StickerLabel } from "@/components/ui/StickerLabel";
 import { requireScoreboardAdmin } from "@/lib/auth";
@@ -29,7 +29,7 @@ export default async function AdminScoreboardPage() {
           >
             View public scoreboard
           </Link>
-          <UserButton />
+          <SignOutButton />
         </div>
       </div>
 

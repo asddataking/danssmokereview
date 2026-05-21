@@ -1,4 +1,5 @@
-import { SignUp } from "@clerk/nextjs";
+import { Suspense } from "react";
+import { AuthForm } from "@/components/auth/AuthForm";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
@@ -10,12 +11,9 @@ export const metadata = createPageMetadata({
 export default function SignUpPage() {
   return (
     <div className="flex justify-center px-4 py-16">
-      <SignUp
-        routing="path"
-        path="/sign-up"
-        signInUrl="/sign-in"
-        forceRedirectUrl="/admin/scoreboard"
-      />
+      <Suspense fallback={<p className="font-bold text-ink/60">Loading…</p>}>
+        <AuthForm mode="sign-up" />
+      </Suspense>
     </div>
   );
 }

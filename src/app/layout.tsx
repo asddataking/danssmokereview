@@ -1,4 +1,3 @@
-import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Bungee, Space_Grotesk } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
@@ -28,18 +27,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${display.variable} ${body.variable} h-full`}>
       <body className="flex min-h-full flex-col antialiased">
-        <ClerkProvider>
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-          />
-          <SkipToContent />
-          <Header />
-          <main id="main-content" className="flex-1" tabIndex={-1}>
-            {children}
-          </main>
-          <Footer />
-        </ClerkProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <SkipToContent />
+        <Header />
+        <main id="main-content" className="flex-1" tabIndex={-1}>
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

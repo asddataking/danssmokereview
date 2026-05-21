@@ -1,16 +1,20 @@
 import "server-only";
 
-import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
+import { getSupabaseServer } from "@/utils/supabase/server";
 
 const adminIds = () =>
-  (process.env.CLERK_ADMIN_USER_IDS ?? "")
+  (process.env.SUPABASE_ADMIN_USER_IDS ?? "")
     .split(",")
     .map((id) => id.trim())
     .filter(Boolean);
 
 export async function getAuthUserId(): Promise<string | null> {
-  const { userId } = await auth();
-  return userId;
+  const supabase = await getSupabaseServer();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  return user?.id ?? null;
 }
 
 export async function isScoreboardAdmin(): Promise<boolean> {
@@ -23,9 +27,9 @@ export async function isScoreboardAdmin(): Promise<boolean> {
 }
 
 export async function requireScoreboardAdmin(): Promise<string> {
-  const { userId } = await auth();
+  const userId = await getAuthUserId();
   if (!userId) {
-    throw new Error("Sign in required.");
+    redirect("/sign-in?redirect=/admin/scoreboard");
   }
 
   const allowed = adminIds();
@@ -34,4 +38,10 @@ export async function requireScoreboardAdmin(): Promise<string> {
   }
 
   return userId;
+}
+
+export async function signOut() {
+  const supabase = await getSupabaseServer();
+  await supabase.auth.signOut();
+  redirect("/");
 }
