@@ -1,12 +1,12 @@
+import "server-only";
+
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
-export const createClient = (
-  cookieStore: Awaited<ReturnType<typeof cookies>>,
-) => {
+function createCookieClient(cookieStore: Awaited<ReturnType<typeof cookies>>) {
   return createServerClient(supabaseUrl!, supabaseKey!, {
     cookies: {
       getAll() {
@@ -18,9 +18,13 @@ export const createClient = (
             cookieStore.set(name, value, options),
           );
         } catch {
-          // Called from Server Component; middleware refreshes sessions.
+          // Server Component read; no cookie writes needed for public data.
         }
       },
     },
   });
-};
+}
+
+export async function getSupabaseServer() {
+  return createCookieClient(await cookies());
+}

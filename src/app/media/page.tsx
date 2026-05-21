@@ -2,14 +2,16 @@ import Link from "next/link";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SlimeButton } from "@/components/ui/SlimeButton";
 import { StickerLabel } from "@/components/ui/StickerLabel";
-import { KICK_URL, SITE_NAME, SITE_TAGLINE } from "@/lib/constants";
 import {
   BRAND_COLORS,
+  KICK_URL,
   MEDIA_ASSETS,
   MEDIA_BLURB,
   MEDIA_CONTACT_EMAIL,
   MEDIA_LINKS,
-} from "@/lib/media-pack";
+  SITE_NAME,
+  SITE_TAGLINE,
+} from "@/lib/constants";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({

@@ -1,7 +1,7 @@
 import { ScoreboardList } from "@/components/scoreboard/ScoreboardList";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SlimeButton } from "@/components/ui/SlimeButton";
-import { getTopReviews } from "@/lib/data/reviews";
+import { getTopReviews } from "@/lib/data";
 
 export async function ScoreboardPreview() {
   const topFive = await getTopReviews(5);

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAllReviewSlugs } from "@/lib/data/reviews";
+import { getAllReviewSlugs } from "@/lib/data";
 import { SITE_URL } from "@/lib/constants";
 
 const staticRoutes: MetadataRoute.Sitemap = [

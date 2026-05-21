@@ -1,7 +1,7 @@
 import { AudioSessionCard } from "@/components/ui/AudioSessionCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StickerLabel } from "@/components/ui/StickerLabel";
-import { getAllAudioSessions } from "@/lib/data/audio";
+import { getAllAudioSessions } from "@/lib/data";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({

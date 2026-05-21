@@ -1,7 +1,7 @@
 import { ProductReviewCard } from "@/components/ui/ProductReviewCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SlimeButton } from "@/components/ui/SlimeButton";
-import { getLatestReviews } from "@/lib/data/reviews";
+import { getLatestReviews } from "@/lib/data";
 
 export async function LatestReviews() {
   const reviews = await getLatestReviews(4);

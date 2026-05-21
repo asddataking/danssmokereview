@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useId, useState } from "react";
+import { AuthNav } from "@/components/layout/AuthNav";
 import { ExternalLinkLabel } from "@/components/ui/ExternalLinkLabel";
 import { NAV_LINKS, PARTNER_LOGOS, SITE_NAME } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -75,6 +76,7 @@ export function Header() {
                 </li>
               );
             })}
+            <AuthNav />
           </ul>
         </nav>
       </div>

@@ -9,7 +9,7 @@ import {
   getAllReviewSlugs,
   getRelatedReviews,
   getReviewBySlug,
-} from "@/lib/data/reviews";
+} from "@/lib/data";
 import { formatScore } from "@/lib/types";
 import { KICK_URL, SITE_URL } from "@/lib/constants";
 import { createPageMetadata } from "@/lib/seo";

@@ -1,7 +1,7 @@
 import { AudioSessionCard } from "@/components/ui/AudioSessionCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SlimeButton } from "@/components/ui/SlimeButton";
-import { getLatestAudioSessions } from "@/lib/data/audio";
+import { getLatestAudioSessions } from "@/lib/data";
 
 export async function AudioSessionsPreview() {
   const sessions = await getLatestAudioSessions(3);

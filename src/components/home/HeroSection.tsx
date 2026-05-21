@@ -2,7 +2,7 @@ import { ScoreboardList } from "@/components/scoreboard/ScoreboardList";
 import Link from "next/link";
 import { SlimeButton } from "@/components/ui/SlimeButton";
 import { StickerLabel } from "@/components/ui/StickerLabel";
-import { getTopReviews } from "@/lib/data/reviews";
+import { getTopReviews } from "@/lib/data";
 import { KICK_URL, SITE_TAGLINE } from "@/lib/constants";
 
 export async function HeroSection() {

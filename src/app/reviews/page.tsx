@@ -1,7 +1,7 @@
 import { ReviewsGridClient } from "@/components/reviews/ReviewsGridClient";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StickerLabel } from "@/components/ui/StickerLabel";
-import { getAllReviews } from "@/lib/data/reviews";
+import { getAllReviews } from "@/lib/data";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({

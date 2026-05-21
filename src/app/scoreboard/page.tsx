@@ -1,7 +1,7 @@
 import { ScoreboardClient } from "@/components/scoreboard/ScoreboardClient";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StickerLabel } from "@/components/ui/StickerLabel";
-import { getScoreboardReviews } from "@/lib/data/reviews";
+import { getAllReviews } from "@/lib/data";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
@@ -12,7 +12,7 @@ export const metadata = createPageMetadata({
 });
 
 export default async function ScoreboardPage() {
-  const reviews = await getScoreboardReviews();
+  const reviews = await getAllReviews();
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 scoreboard-page">
