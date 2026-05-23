@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { NewsletterFooterSignup } from "@/components/newsletter/NewsletterFooterSignup";
 import { ExternalLinkLabel } from "@/components/ui/ExternalLinkLabel";
 import {
   DANK_N_DEVOUR_URL,
@@ -37,7 +38,7 @@ export function Footer() {
   return (
     <footer className="mt-auto border-t-4 border-ink bg-ink text-white">
       <div className="mx-auto max-w-6xl px-4 py-10">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
           <div>
             <p className="font-display text-2xl font-black uppercase text-slime">
               {SITE_NAME}
@@ -84,6 +85,7 @@ export function Footer() {
               ))}
             </ul>
           </nav>
+          <NewsletterFooterSignup />
           <nav aria-label="Social links">
             <p className="mb-3 text-xs font-bold uppercase tracking-wider text-slime">
               Social

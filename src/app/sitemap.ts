@@ -7,6 +7,7 @@ const staticRoutes: MetadataRoute.Sitemap = [
   { url: `${SITE_URL}/scoreboard`, changeFrequency: "weekly", priority: 0.9 },
   { url: `${SITE_URL}/reviews`, changeFrequency: "weekly", priority: 0.9 },
   { url: `${SITE_URL}/audio`, changeFrequency: "weekly", priority: 0.7 },
+  { url: `${SITE_URL}/subscribe`, changeFrequency: "monthly", priority: 0.85 },
   { url: `${SITE_URL}/about`, changeFrequency: "monthly", priority: 0.6 },
   { url: `${SITE_URL}/media`, changeFrequency: "monthly", priority: 0.5 },
 ];

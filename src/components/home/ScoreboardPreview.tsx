@@ -1,3 +1,4 @@
+import { NewsletterCTA } from "@/components/newsletter/NewsletterCTA";
 import { ScoreboardList } from "@/components/scoreboard/ScoreboardList";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SlimeButton } from "@/components/ui/SlimeButton";
@@ -18,6 +19,12 @@ export async function ScoreboardPreview() {
         accent="orange"
       />
       <ScoreboardList reviews={topFive} animated />
+      <NewsletterCTA
+        source="homepage_scoreboard"
+        variant="compact"
+        className="mt-8"
+        showLinkToSubscribe
+      />
       <div className="mt-8 text-center">
         <SlimeButton href="/scoreboard" variant="electric">
           Full Scoreboard

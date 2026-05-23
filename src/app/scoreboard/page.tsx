@@ -1,3 +1,4 @@
+import { NewsletterCTA } from "@/components/newsletter/NewsletterCTA";
 import { ScoreboardClient } from "@/components/scoreboard/ScoreboardClient";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StickerLabel } from "@/components/ui/StickerLabel";
@@ -23,7 +24,18 @@ export default async function ScoreboardPage() {
         title="Smoke Scoreboard"
         subtitle="Filter by category, sort by Dan Score, community score, newest, or worth the tax."
       />
+      <NewsletterCTA
+        source="scoreboard_top"
+        variant="compact"
+        className="mb-8"
+        showLinkToSubscribe
+      />
       <ScoreboardClient reviews={reviews} />
+      <NewsletterCTA
+        source="scoreboard_footer"
+        variant="default"
+        className="mt-10"
+      />
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { SlimeButton } from "@/components/ui/SlimeButton";
 import { StickerLabel } from "@/components/ui/StickerLabel";
 import { VerdictBadge } from "@/components/ui/VerdictBadge";

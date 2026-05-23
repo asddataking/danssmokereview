@@ -1,3 +1,4 @@
+import { NewsletterInlineSignup } from "@/components/newsletter/NewsletterInlineSignup";
 import { ScoreboardList } from "@/components/scoreboard/ScoreboardList";
 import Link from "next/link";
 import { SlimeButton } from "@/components/ui/SlimeButton";
@@ -37,6 +38,7 @@ export async function HeroSection() {
               Watch Live on Kick
             </SlimeButton>
           </div>
+          <NewsletterInlineSignup source="homepage_hero" />
           <p className="mt-6 text-sm font-bold uppercase text-ink/50 doodle-arrow">
             <Link href="/reviews" className="hover:text-nick-orange">
               Browse all reviews

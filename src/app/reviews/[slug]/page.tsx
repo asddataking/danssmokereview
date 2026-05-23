@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { NewsletterCTA } from "@/components/newsletter/NewsletterCTA";
 import { ProductReviewCard } from "@/components/ui/ProductReviewCard";
 import { SlimeButton } from "@/components/ui/SlimeButton";
 import { StickerLabel } from "@/components/ui/StickerLabel";
@@ -200,6 +201,13 @@ export default async function ReviewDetailPage({ params }: PageProps) {
           </div>
         </section>
       )}
+
+      <NewsletterCTA
+        source="review_footer"
+        variant="compact"
+        className="mt-10"
+        showLinkToSubscribe
+      />
 
       <div className="mt-8">
         <Link

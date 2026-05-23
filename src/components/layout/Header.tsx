@@ -48,6 +48,17 @@ export function Header() {
           )}
         >
           <ul className="flex flex-col gap-0 md:flex-row md:items-center md:gap-1">
+            <li className="md:ml-1">
+              <Link
+                href="/subscribe"
+                className="mx-4 my-2 block border-4 border-ink bg-nick-orange px-4 py-3 text-center text-sm font-black uppercase text-white shadow-sticker hover:bg-[#e55a00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric md:mx-0 md:my-0 md:inline-flex md:items-center md:px-4 md:py-2"
+                onClick={() => setOpen(false)}
+                data-cta="newsletter"
+                data-source="nav"
+              >
+                Join Newsletter
+              </Link>
+            </li>
             {NAV_LINKS.map((link) => {
               const logo = partnerNavLogos[link.label];
 
